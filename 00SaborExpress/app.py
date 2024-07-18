@@ -1,3 +1,4 @@
+import json
 import requests
 
 url = 'https://guilhermeonrails.github.io/api-restaurantes/restaurantes.json'
@@ -21,4 +22,8 @@ if response.status_code == 200:
 else:
     print(f'O erro foi {response.status_code}')  
 
-print(dados_res['McDonald’s'])    
+for nome_restaurante, dados in dados_res.items():
+    nome_do_arquivo = f'{nome_restaurante}.json'
+    with open(nome_do_arquivo, 'w') as aqr_res:
+        json.dump(dados,aqr_res,indent=4)
+
